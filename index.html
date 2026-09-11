@@ -382,7 +382,7 @@
             font-size: 12px;
             line-height: 1.6;
             color: #000;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             word-break: break-word;
             position: relative;
@@ -468,25 +468,6 @@
             border-color: #000;
         }
 
-        .logout-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 8px 16px;
-            background: #000;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        .logout-btn:hover {
-            background: #222;
-        }
-
         @media (max-width: 768px) {
             .grid-2 {
                 grid-template-columns: 1fr;
@@ -542,42 +523,42 @@
         <div class="container">
             <div class="header">
                 <h1>Prompt Studio</h1>
-                <p>Генеруй промпти для своїх проектів</p>
+                <p>Генеруй промпти для дрону що летить у вікно</p>
             </div>
 
             <div class="progress-bar">
                 <div class="progress-item active" data-step="1">
                     <div class="progress-circle">1</div>
-                    <div class="progress-label">Референси</div>
+                    <div class="progress-label">Фото 1<br>Видалік</div>
                 </div>
                 <div class="progress-item" data-step="2">
                     <div class="progress-circle">2</div>
-                    <div class="progress-label">Параметри</div>
+                    <div class="progress-label">Фото 2<br>Приблизно</div>
                 </div>
                 <div class="progress-item" data-step="3">
                     <div class="progress-circle">3</div>
-                    <div class="progress-label">Промпт</div>
+                    <div class="progress-label">Фото 3<br>Інтер'єр</div>
                 </div>
                 <div class="progress-item" data-step="4">
                     <div class="progress-circle">4</div>
-                    <div class="progress-label">Скопіювати</div>
+                    <div class="progress-label">Відео 1<br>Підліт</div>
                 </div>
                 <div class="progress-item" data-step="5">
                     <div class="progress-circle">5</div>
-                    <div class="progress-label">Готово</div>
+                    <div class="progress-label">Відео 2<br>Облет</div>
                 </div>
             </div>
 
             <div class="content">
-                <!-- STEP 1: References -->
+                <!-- STEP 1: Photo 1 (Far Away) -->
                 <div class="step active" id="step-1">
-                    <h2>Завантажте референси</h2>
-                    <p class="step-description">Завантажте 2 зображення як орієнтири для генерування промпту</p>
+                    <h2>Фото 1: Видалік (закрите вікно)</h2>
+                    <p class="step-description">Завантажте 2 референси та виберіть параметри для першої фотографії</p>
 
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>📸 Референс 1</label>
-                            <input type="file" id="ref1" accept="image/*" onchange="previewRef(1)">
+                            <label>📸 Референс 1 (дім)</label>
+                            <input type="file" id="refImage" accept="image/*" onchange="previewRef(1)">
                             <div class="reference-preview" id="ref1Preview" style="display: none;">
                                 <img id="ref1Img" src="">
                                 <div class="reference-label">Завантажено</div>
@@ -585,8 +566,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>📸 Референс 2</label>
-                            <input type="file" id="ref2" accept="image/*" onchange="previewRef(2)">
+                            <label>📸 Референс 2 (інтер'єр)</label>
+                            <input type="file" id="refInterior" accept="image/*" onchange="previewRef(2)">
                             <div class="reference-preview" id="ref2Preview" style="display: none;">
                                 <img id="ref2Img" src="">
                                 <div class="reference-label">Завантажено</div>
@@ -594,124 +575,253 @@
                         </div>
                     </div>
 
-                    <div class="buttons">
-                        <button class="btn-primary" onclick="nextStep(2)">Далі →</button>
-                    </div>
-                </div>
-
-                <!-- STEP 2: Parameters -->
-                <div class="step" id="step-2">
-                    <h2>Виберіть параметри</h2>
-                    <p class="step-description">Налаштуйте параметри для вашого промпту</p>
-
                     <div class="grid-2">
                         <div class="form-group">
-                            <label>🎨 Стиль</label>
-                            <select id="style">
-                                <option value="cinematic">Кінематографічний</option>
-                                <option value="realistic">Реалістичний</option>
-                                <option value="artistic">Мистецький</option>
-                                <option value="minimalist">Мінімалістичний</option>
+                            <label>🏗️ Стиль архітектури</label>
+                            <select id="arch1">
+                                <option value="modern-glass">Сучасний з панорамним склом</option>
+                                <option value="luxury-minimalist">Люкс мінімалізм</option>
+                                <option value="contemporary">Сучасний мінімалізм</option>
+                                <option value="glass-cube">Скляний куб архітектури</option>
+                                <option value="architectural">Архітектурний шедевр</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>🌍 Оточення</label>
-                            <select id="environment">
-                                <option value="urban">Міське</option>
-                                <option value="nature">Природа</option>
-                                <option value="interior">Інтер'єр</option>
-                                <option value="studio">Студія</option>
+                            <select id="env1">
+                                <option value="urban-landscape">Міський пейзаж</option>
+                                <option value="suburban">Передмістя</option>
+                                <option value="mountains">Гори</option>
+                                <option value="valley">Долина</option>
+                                <option value="forest">Ліс</option>
+                                <option value="seaside">Коло моря</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>☀️ Освітлення</label>
-                            <select id="lighting">
-                                <option value="natural">Природне</option>
-                                <option value="golden">Золота година</option>
-                                <option value="studio">Студійне</option>
-                                <option value="dramatic">Драматичне</option>
+                            <select id="light1">
+                                <option value="golden-hour">Золота година (закат)</option>
+                                <option value="daylight">Денне світло</option>
+                                <option value="morning">Ранок</option>
+                                <option value="natural-window">Природне світло з вікна</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label>📐 Формат</label>
-                            <select id="format">
-                                <option value="16:9">Горизонтальний 16:9</option>
-                                <option value="1:1">Квадрат 1:1</option>
-                                <option value="9:16">Вертикальний 9:16</option>
-                                <option value="4:3">Класичний 4:3</option>
+                            <label>🏢 Этаж / Висота</label>
+                            <select id="floor1">
+                                <option value="10th">10-й етаж (30-35 м)</option>
+                                <option value="8th">8-й етаж (24-28 м)</option>
+                                <option value="5th">5-й етаж (15-18 м)</option>
+                                <option value="2nd">2-й етаж (6-8 м)</option>
+                                <option value="ground">1-й етаж / Землею</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="btn-primary" onclick="generatePromptStep1()">✨ Генерувати промпт</button>
+                    </div>
+
+                    <div id="prompt1Container" style="display: none;">
+                        <h3 style="margin-top: 24px; margin-bottom: 12px;">Ваш промпт для фото 1:</h3>
+                        <div class="prompt-box" id="prompt1">
+                            <button class="copy-btn" onclick="copyPrompt('prompt1')">📋 Копіювати</button>
+                        </div>
+                        <button class="btn-primary" onclick="nextStep(2)" style="margin-top: 16px; width: 100%;">Далі →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Photo 2 (Close up) -->
+                <div class="step" id="step-2">
+                    <h2>Фото 2: Приблизно (відкрите вікно)</h2>
+                    <p class="step-description">Виберіть параметри для другої фотографії</p>
+
+                    <div class="form-group">
+                        <label>🪟 Що повинно статися з вікном?</label>
+                        <select id="window2">
+                            <option value="sliding-glass-door">Розсувна скляна дверь</option>
+                            <option value="large-window">Велике панорамне вікно</option>
+                            <option value="french-doors">Французькі двері</option>
+                            <option value="pivot-door">Поворотна дверь</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>🔄 Матеріал рами</label>
+                            <select id="material2">
+                                <option value="aluminum">Алюміній</option>
+                                <option value="steel">Сталь</option>
+                                <option value="wood">Дерево</option>
+                                <option value="white-frame">Біла рама</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>✨ Рівень деталей</label>
+                            <select id="detail2">
+                                <option value="ultra-detailed">Ультра деталізовано</option>
+                                <option value="detailed">Детально</option>
+                                <option value="clean">Чисто</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="buttons">
                         <button class="btn-secondary" onclick="prevStep(1)">← Назад</button>
-                        <button class="btn-primary" onclick="nextStep(3)">Далі →</button>
+                        <button class="btn-primary" onclick="generatePromptStep2()">✨ Генерувати промпт</button>
+                    </div>
+
+                    <div id="prompt2Container" style="display: none;">
+                        <h3 style="margin-top: 24px; margin-bottom: 12px;">Ваш промпт для фото 2:</h3>
+                        <div class="prompt-box" id="prompt2">
+                            <button class="copy-btn" onclick="copyPrompt('prompt2')">📋 Копіювати</button>
+                        </div>
+                        <button class="btn-primary" onclick="nextStep(3)" style="margin-top: 16px; width: 100%;">Далі →</button>
                     </div>
                 </div>
 
-                <!-- STEP 3: Generate -->
+                <!-- STEP 3: Photo 3 (Interior) -->
                 <div class="step" id="step-3">
-                    <h2>Генеруйте промпт</h2>
-                    <p class="step-description">Натисніть кнопку щоб згенерувати ваш промпт на основі параметрів</p>
+                    <h2>Фото 3: Інтер'єр (остаточний кадр)</h2>
+                    <p class="step-description">Виберіть параметри для третьої фотографії</p>
+
+                    <div class="form-group">
+                        <label>🏠 Стиль інтер'єру</label>
+                        <select id="interior3">
+                            <option value="modern-living">Сучасна вітальня</option>
+                            <option value="luxury-loft">Люкс лофт</option>
+                            <option value="minimalist-space">Мінімалістське простір</option>
+                            <option value="scandinavian">Скандинавський стиль</option>
+                            <option value="contemporary-office">Сучасний офіс</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📐 Як дрон входить до кімнати?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" id="entry-top" name="entry" value="top" checked>
+                                <label for="entry-top">Зверху</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="entry-horizontal" name="entry" value="horizontal">
+                                <label for="entry-horizontal">Горизонтально</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="entry-bottom" name="entry" value="bottom">
+                                <label for="entry-bottom">Знизу</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="entry-diagonal" name="entry" value="diagonal">
+                                <label for="entry-diagonal">По діагоналі</label>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="buttons">
                         <button class="btn-secondary" onclick="prevStep(2)">← Назад</button>
-                        <button class="btn-primary" onclick="generatePrompt()">✨ Генерувати</button>
+                        <button class="btn-primary" onclick="generatePromptStep3()">✨ Генерувати промпт</button>
                     </div>
 
-                    <div id="promptResult" style="display: none; margin-top: 24px;">
-                        <h3 style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">Ваш промпт:</h3>
-                        <div class="prompt-box" id="promptText">
-                            <button class="copy-btn" onclick="copyPrompt()">📋 Копіювати</button>
+                    <div id="prompt3Container" style="display: none;">
+                        <h3 style="margin-top: 24px; margin-bottom: 12px;">Ваш промпт для фото 3:</h3>
+                        <div class="prompt-box" id="prompt3">
+                            <button class="copy-btn" onclick="copyPrompt('prompt3')">📋 Копіювати</button>
                         </div>
                         <button class="btn-primary" onclick="nextStep(4)" style="margin-top: 16px; width: 100%;">Далі →</button>
                     </div>
                 </div>
 
-                <!-- STEP 4: Copy -->
+                <!-- STEP 4: Video 1 Params -->
                 <div class="step" id="step-4">
-                    <h2>Скопіюйте промпт</h2>
-                    <p class="step-description">Промпт скопійовано! Тепер можна відправити його в AI-генератор</p>
+                    <h2>Відео 1: Підліт + Відкриття</h2>
+                    <p class="step-description">Параметри для першого відео (від фото 1 до фото 2)</p>
 
-                    <div class="success-message">✅ Промпт скопійовано в буфер обміну</div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>🎥 Швидкість наближення</label>
+                            <select id="speed4">
+                                <option value="slow">Повільна</option>
+                                <option value="medium" selected>Середня</option>
+                                <option value="fast">Швидка</option>
+                            </select>
+                        </div>
 
-                    <div class="platforms">
-                        <h4>Отправьте промпт в:</h4>
-                        <div class="platform-links">
-                            <a href="https://chat.openai.com" target="_blank" class="platform-link">
-                                <i class="fas fa-message"></i> ChatGPT
-                            </a>
-                            <a href="https://gemini.google.com" target="_blank" class="platform-link">
-                                <i class="fas fa-sparkles"></i> Google Gemini
-                            </a>
-                            <a href="https://www.midjourney.com" target="_blank" class="platform-link">
-                                <i class="fas fa-brush"></i> Midjourney
-                            </a>
-                            <a href="https://www.bing.com/images/create" target="_blank" class="platform-link">
-                                <i class="fas fa-image"></i> Bing Creator
-                            </a>
+                        <div class="form-group">
+                            <label>🚪 Як швидко відкривається вікно?</label>
+                            <select id="doorSpeed4">
+                                <option value="smooth">Плавно</option>
+                                <option value="halfway" selected>На половину</option>
+                                <option value="end">В кінці</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="buttons">
                         <button class="btn-secondary" onclick="prevStep(3)">← Назад</button>
-                        <button class="btn-primary" onclick="nextStep(5)">Готово →</button>
+                        <button class="btn-primary" onclick="generatePromptVideo1()">✨ Генерувати промпт</button>
+                    </div>
+
+                    <div id="videoPrompt1Container" style="display: none;">
+                        <h3 style="margin-top: 24px; margin-bottom: 12px;">Ваш промпт для Відео 1:</h3>
+                        <div class="prompt-box" id="videoPrompt1">
+                            <button class="copy-btn" onclick="copyPrompt('videoPrompt1')">📋 Копіювати</button>
+                        </div>
+                        <div class="platforms">
+                            <h4>Використовуйте в Runway Gen-3 або Luma AI</h4>
+                        </div>
+                        <button class="btn-primary" onclick="nextStep(5)" style="margin-top: 16px; width: 100%;">Далі →</button>
                     </div>
                 </div>
 
-                <!-- STEP 5: Finish -->
+                <!-- STEP 5: Video 2 Params -->
                 <div class="step" id="step-5">
-                    <h2>Готово!</h2>
-                    <p class="step-description">Ваш промпт готовий до використання. Можете розпочати новий проект або вийти</p>
+                    <h2>Відео 2: Облет інтер'єру</h2>
+                    <p class="step-description">Параметри для другого відео (від фото 2 до фото 3)</p>
 
-                    <div class="success-message">✅ Успішно! Промпт відправлено в генератор AI</div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>🌀 Тип облету</label>
+                            <select id="flyType5">
+                                <option value="circular">Круговий облет</option>
+                                <option value="serpentine" selected>Звивистий шлях</option>
+                                <option value="upward">Вгору по спіралі</option>
+                                <option value="smooth">Плавний драм</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>⚡ Динаміка руху</label>
+                            <select id="dynamics5">
+                                <option value="gentle">Ніжна</option>
+                                <option value="smooth" selected>Плавна</option>
+                                <option value="energetic">Енергійна</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="buttons">
-                        <button class="btn-secondary" onclick="restartApp()">🔄 Новий промпт</button>
-                        <button class="btn-secondary" onclick="logout()">Вихід</button>
+                        <button class="btn-secondary" onclick="prevStep(4)">← Назад</button>
+                        <button class="btn-primary" onclick="generatePromptVideo2()">✨ Генерувати промпт</button>
+                    </div>
+
+                    <div id="videoPrompt2Container" style="display: none;">
+                        <h3 style="margin-top: 24px; margin-bottom: 12px;">Ваш промпт для Відео 2:</h3>
+                        <div class="prompt-box" id="videoPrompt2">
+                            <button class="copy-btn" onclick="copyPrompt('videoPrompt2')">📋 Копіювати</button>
+                        </div>
+                        <div class="platforms">
+                            <h4>Використовуйте в Runway Gen-3</h4>
+                        </div>
+                        <div style="margin-top: 24px; padding: 16px; background: #fafafa; border-left: 2px solid #000; border-radius: 4px;">
+                            <p style="font-size: 13px; color: #000; font-weight: 600;">✅ Готово! Всі 5 промптів створено!</p>
+                            <p style="font-size: 12px; color: #666; margin-top: 8px;">Тепер можна генерувати відео у Runway Gen-3 або Luma AI</p>
+                        </div>
+                        <button class="btn-secondary" onclick="restartApp()" style="margin-top: 16px; width: 100%;">🔄 Почати заново</button>
                     </div>
                 </div>
             </div>
@@ -719,13 +829,11 @@
     </div>
 
     <script>
-        // Password Configuration
         const PASSWORD_CONFIG = {
-            permanent: 'studio123', // Пароль для постійного доступу
-            temporary: 'once456'     // Пароль для одноразового доступу
+            permanent: 'studio123',
+            temporary: 'once456'
         };
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             checkAuth();
         });
@@ -774,7 +882,6 @@
             }
             
             if (pass === PASSWORD_CONFIG.temporary) {
-                // Проверяем была ли уже попытка с этой почтой с этого браузера
                 const usedEmails = JSON.parse(localStorage.getItem('usedEmails') || '[]');
                 
                 if (usedEmails.includes(email)) {
@@ -782,11 +889,9 @@
                     return;
                 }
                 
-                // Записываем email как использованный
                 usedEmails.push(email);
                 localStorage.setItem('usedEmails', JSON.stringify(usedEmails));
                 
-                // Даём доступ только на сессию
                 sessionStorage.setItem('auth', 'true');
                 sessionStorage.setItem('tempAuth', email);
                 showApp();
@@ -806,18 +911,10 @@
             document.getElementById('appContainer').style.display = 'block';
         }
 
-        function logout() {
-            sessionStorage.removeItem('auth');
-            showAuth();
-            document.getElementById('permanentPass').value = '';
-            document.getElementById('tempEmail').value = '';
-            document.getElementById('temporaryPass').value = '';
-        }
-
         function previewRef(num) {
-            const input = document.getElementById('ref' + num);
-            const preview = document.getElementById('ref' + num + 'Preview');
-            const img = document.getElementById('ref' + num + 'Img');
+            const input = document.getElementById(num === 1 ? 'refImage' : 'refInterior');
+            const preview = document.getElementById(num === 1 ? 'ref1Preview' : 'ref2Preview');
+            const img = document.getElementById(num === 1 ? 'ref1Img' : 'ref2Img');
             
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -846,53 +943,133 @@
             nextStep(step);
         }
 
-        function generatePrompt() {
-            const style = document.getElementById('style').value;
-            const environment = document.getElementById('environment').value;
-            const lighting = document.getElementById('lighting').value;
-            const format = document.getElementById('format').value;
+        function generatePromptStep1() {
+            const arch = document.getElementById('arch1').value;
+            const env = document.getElementById('env1').value;
+            const light = document.getElementById('light1').value;
             
-            const styleMap = {
-                'cinematic': 'кінематографічний',
-                'realistic': 'реалістичний',
-                'artistic': 'мистецький',
-                'minimalist': 'мінімалістичний'
+            const arcMap = {
+                'modern-glass': 'сучасне будівля з панорамним склом',
+                'luxury-minimalist': 'люксова мінімалістська будівля',
+                'contemporary': 'сучасна будівля мінімалізм',
+                'glass-cube': 'скляний куб архітектури',
+                'architectural': 'архітектурний шедевр'
             };
-            
+
             const envMap = {
-                'urban': 'міське оточення',
-                'nature': 'природне оточення',
-                'interior': 'інтер\'єр',
-                'studio': 'студійне середовище'
+                'urban-landscape': 'міський пейзаж на фоні',
+                'suburban': 'передмістя',
+                'mountains': 'гори на фоні',
+                'valley': 'долина',
+                'forest': 'ліс',
+                'seaside': 'море на фоні, пляж, морський берег'
             };
-            
-            const lightingMap = {
-                'natural': 'природне освітлення',
-                'golden': 'золота година',
-                'studio': 'студійне освітлення',
-                'dramatic': 'драматичне освітлення'
+
+            const lightMap = {
+                'golden-hour': 'золота година освітлення, теплий світ закату',
+                'daylight': 'природне денне світло',
+                'morning': 'утреннє освітлення м\'яке світло',
+                'natural-window': 'природне світло з вікна'
             };
-            
-            const prompt = `Професійна фотографія, ${styleMap[style]} стиль, ${envMap[environment]}, ${lightingMap[lighting]}, 8K, ультрадетально, висока якість, професійна композиція, гостра фокусировка, красива глибина, формат ${format}, без людей, чистий фон, совершенное освітлення, майстерська робота, готово для публікації, детальне, насичене кольори, натуральне світло, професійна обробка`;
-            
-            document.getElementById('promptText').textContent = prompt;
-            document.getElementById('promptResult').style.display = 'block';
+
+            const prompt = 'Cinematic architectural photography, ' + arcMap[arch] + ', ZAKRITE vikno, exterior view from distance, ' + lightMap[light] + ', ' + envMap[env] + ', cinematic depth, ultra-detailed, 8K photorealistic, architectural rendering, professional photography, sharp focus, beautiful composition, no people, daytime, clear weather, dramatic shadows, HORIZONTAL LANDSCAPE FORMAT 16:9 ASPECT RATIO, desktop website header banner size, wide panoramic composition, ultra high resolution, suitable for web hero section';
+
+            document.getElementById('prompt1').textContent = prompt;
+            document.getElementById('prompt1Container').style.display = 'block';
         }
 
-        function copyPrompt() {
-            const promptText = document.getElementById('promptText').textContent;
+        function generatePromptStep2() {
+            const window2 = document.getElementById('window2').value;
+            const detail2 = document.getElementById('detail2').value;
+
+            const windowMap = {
+                'sliding-glass-door': 'rozsuvna sklyana dver',
+                'large-window': 'velike panoramne vikno',
+                'french-doors': 'francuzki dveri',
+                'pivot-door': 'povorotna dver'
+            };
+
+            const prompt = 'Cinematic architectural photography, same building as reference, VIDKRITE ' + windowMap[window2] + ', view zoomed in, showing interior glimpse through glass, same architectural details from previous photo, same lighting, cinematic depth, ' + detail2 + ', 8K photorealistic, seamless architectural transition, professional photography, clear glass reflection visible, no people, ' + windowMap[window2] + ' appears to be opening, HORIZONTAL LANDSCAPE FORMAT 16:9 ASPECT RATIO, desktop website header banner size, wide panoramic composition, ultra high resolution, suitable for web hero section';
+
+            document.getElementById('prompt2').textContent = prompt;
+            document.getElementById('prompt2Container').style.display = 'block';
+        }
+
+        function generatePromptStep3() {
+            const interior3 = document.getElementById('interior3').value;
+            const entry = document.querySelector('input[name="entry"]:checked').value;
+
+            const interiorMap = {
+                'modern-living': 'suchasna vitalnya z panoramnym vidom',
+                'luxury-loft': 'lyuks loft z visokymy stelyamy',
+                'minimalist-space': 'minimalistske vidkrite prostir',
+                'scandinavian': 'skandinavskiy stil dyzajnu',
+                'contemporary-office': 'suchasniy ofis vidkritogo planu'
+            };
+
+            const entryMap = {
+                'top': 'dron vhodyt zverhu, pidnimayuchys nad viknom',
+                'horizontal': 'dron vhodyt gorizontalno na rivni vikna',
+                'bottom': 'dron vhodyt znizu pid viknom',
+                'diagonal': 'dron vhodyt po diagonali dinamichno'
+            };
+
+            const envMap = {
+                'urban-landscape': 'miskiy peyzazh na foni',
+                'suburban': 'peredmistya',
+                'mountains': 'gory na foni',
+                'valley': 'dolina',
+                'forest': 'lis',
+                'seaside': 'more na foni, plyazh, morskiy bereg'
+            };
+
+            const prompt = 'Interior architectural photography, ' + interiorMap[interior3] + ', view from inside looking out through opened window, ' + envMap[document.getElementById('env1').value] + ' visible outside through glass, natural light flooding in, ultra-detailed, 8K photorealistic, professional interior design photo, spacious composition, architectural elements visible, end framing for drone flyby, ' + entryMap[entry] + ', same exterior visible as in previous photo, HORIZONTAL LANDSCAPE FORMAT 16:9 ASPECT RATIO, desktop website header banner size, wide panoramic composition, ultra high resolution, suitable for web hero section';
+
+            document.getElementById('prompt3').textContent = prompt;
+            document.getElementById('prompt3Container').style.display = 'block';
+        }
+
+        function generatePromptVideo1() {
+            const speed4 = document.getElementById('speed4').value;
+
+            const speedMap = {
+                'slow': 'povilna',
+                'medium': 'serednya',
+                'fast': 'shvidka'
+            };
+
+            const prompt = 'FPV drone shot approaching modern building, camera flies ' + speedMap[speed4] + ' smoothly from distance toward opened window, window OPENS DURING APPROACH, smooth motion with gentle banking, seamless transition, cinematic camera movement, photorealistic 4K 60fps, static background buildings, continuous smooth motion, realistic drone physics, motion blur streaking, gimbal-free raw perspective, strong natural parallax, HORIZONTAL 16:9 LANDSCAPE FORMAT, desktop website video width, cinematic framing';
+
+            document.getElementById('videoPrompt1').textContent = prompt;
+            document.getElementById('videoPrompt1Container').style.display = 'block';
+        }
+
+        function generatePromptVideo2() {
+            const flyType5 = document.getElementById('flyType5').value;
+            const dynamics5 = document.getElementById('dynamics5').value;
+
+            const flyTypeMap = {
+                'circular': 'krugovym obletem',
+                'serpentine': 'zvivistym shlyahom',
+                'upward': 'vgoru po spirali',
+                'smooth': 'plavnym dramom vpered'
+            };
+
+            const prompt = 'FPV drone shot flying through open window into interior, camera enters with ' + flyTypeMap[flyType5] + ', smooth flight path showing space, moves around furniture, flies under lights and past architectural features, natural light from windows, cinematic ' + dynamics5 + ' movement, smooth banking turns, continuous flight, 4K 60fps photorealistic, realistic gimbal movement, dynamic perspective shifts, strong natural parallax, no cuts, seamless interior reveal, HORIZONTAL 16:9 LANDSCAPE FORMAT, desktop website video width, cinematic framing';
+
+            document.getElementById('videoPrompt2').textContent = prompt;
+            document.getElementById('videoPrompt2Container').style.display = 'block';
+        }
+
+        function copyPrompt(promptId) {
+            const promptText = document.getElementById(promptId).textContent;
             navigator.clipboard.writeText(promptText).then(() => {
                 alert('Промпт скопійовано!');
             });
         }
 
         function restartApp() {
-            nextStep(1);
-            document.getElementById('ref1').value = '';
-            document.getElementById('ref2').value = '';
-            document.getElementById('ref1Preview').style.display = 'none';
-            document.getElementById('ref2Preview').style.display = 'none';
-            document.getElementById('promptResult').style.display = 'none';
+            location.reload();
         }
     </script>
 </body>
